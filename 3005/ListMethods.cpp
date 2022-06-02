@@ -2,8 +2,7 @@
 
 List::~List() // деструктор
 {
-    while (head)
-    {
+    while (head) {
         tail = head->next;
         delete head;
         head = tail;
@@ -16,14 +15,12 @@ void List::PushBack(int x) { // вставка в конец списка
     temp->value = x;
 
     if (x > 0) {
-        if (head != NULL)
-        {
+        if (head != NULL) {
             temp->prev = tail;
             tail->next = temp;
             tail = temp;
         }
-        else
-        {
+        else {
             temp->prev = NULL;
             head = tail = temp;
         }
@@ -43,6 +40,7 @@ void List::PushBack(int x) { // вставка в конец списка
 }
 
 void List::PushFront(int x) { // вставка в начало списка
+
     Node* temp = new Node;
     temp->next = NULL;
     temp->value = x;
@@ -66,6 +64,7 @@ bool List::ShowFromBegin() // вывод с начала списка
     if (!temp) {
         return 0;
     }
+
     else {
         for (; temp != NULL;) {
             cout << temp->value << " | ";
@@ -82,6 +81,7 @@ bool List::ShowFromEnd() // вывод списка наоборот
     if (!temp) {
         return 0;
     }
+
     else {
         for (; temp != NULL;) {
             cout << temp->value << " | ";
@@ -109,6 +109,7 @@ bool List::Remove(int index) { // удалить элемент по индексу
     }
     if (temp == tail) {
         tail = tail->prev;
+
         if (tail) {
             tail->next = NULL;
         }
@@ -126,25 +127,17 @@ void List::Insert(int index, int value) {
     Node* newnode = new Node;
     Node* after;
     newnode->value = value;
-
     int counter = 0;
-    if (index == 0)
-    {
+    if (index == 0) {
         PushFront(value);
-
-
     }
-    else if (index > count - 1)
-    {
+    else if (index > count - 1) {
         PushBack(value);
     }
-    else
-    {
-        while (counter != index)
-        {
+    else {
+        while (counter != index) {
             counter++;
-            if (counter == index)
-            {
+            if (counter == index) {
                 newnode->next = current->next;
                 after = newnode->next;
                 after->prev = newnode;
@@ -152,11 +145,9 @@ void List::Insert(int index, int value) {
                 newnode->prev = current;
                 this->count++;
             }
-            else
-            {
+            else {
                 current = current->next;
             }
-
         }
     }
 }
